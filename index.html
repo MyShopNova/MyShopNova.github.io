@@ -13,14 +13,47 @@
       margin: 0;
       padding: 0;
     }
+
+    /* Navigation bar styles */
+    nav {
+      background-color: #005bb5;
+      padding: 10px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav li {
+      margin: 0 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffcc00;
+    }
+
     header {
       background-color: #0073e6;
       color: white;
       padding: 20px 0;
     }
+
     main {
       padding: 40px;
     }
+
     button {
       background-color: #0073e6;
       color: white;
@@ -30,9 +63,11 @@
       cursor: pointer;
       font-size: 16px;
     }
+
     button:hover {
       background-color: #005bb5;
     }
+
     footer {
       margin-top: 50px;
       background-color: #eee;
@@ -42,6 +77,17 @@
   </style>
 </head>
 <body>
+
+  <!-- Navigation bar -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
   <header>
     <h1>Welcome to My Simple Website</h1>
   </header>
@@ -49,11 +95,12 @@
   <main>
     <h2>My First Product</h2>
     <p>This is just a demo product description.</p>
-   <a href="thankyou.html"><button>Buy Now</button></a>
+    <a href="thankyou.html"><button>Buy Now</button></a>
   </main>
 
   <footer>
     <p>© 2025 My Simple Website</p>
   </footer>
+
 </body>
 </html>
