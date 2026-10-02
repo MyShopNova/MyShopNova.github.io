@@ -1,107 +1,863 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Simple Website</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f9f9f9;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    /* Navigation bar styles */
-    nav {
-      background-color: #005bb5;
-      padding: 10px 0;
-    }
+<title>TurnoverMate | Rental Turnover Checklist</title>
 
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-    }
+<meta name="description" content="Create a personalized rental property turnover checklist in seconds.">
 
-    nav li {
-      margin: 0 20px;
-    }
+<style>
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-      transition: color 0.3s ease;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    nav a:hover {
-      color: #ffcc00;
-    }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f5f7fb;
+  color: #1f2937;
+  line-height: 1.6;
+}
 
-    header {
-      background-color: #0073e6;
-      color: white;
-      padding: 20px 0;
-    }
+nav {
+  background: #123b5d;
+  padding: 14px 20px;
+}
 
-    main {
-      padding: 40px;
-    }
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
 
-    button {
-      background-color: #0073e6;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+}
 
-    button:hover {
-      background-color: #005bb5;
-    }
+nav a:hover {
+  color: #8ee3f5;
+}
 
-    footer {
-      margin-top: 50px;
-      background-color: #eee;
-      padding: 10px;
-      font-size: 14px;
-    }
-  </style>
+header {
+  background: linear-gradient(135deg, #0f4c5c, #197278);
+  color: white;
+  text-align: center;
+  padding: 65px 20px;
+}
+
+header h1 {
+  font-size: 42px;
+  margin: 0 0 15px;
+}
+
+header p {
+  font-size: 19px;
+  max-width: 650px;
+  margin: auto;
+  opacity: 0.95;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 30px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #123b5d;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  text-align: left;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.button-area {
+  text-align: center;
+  margin-top: 25px;
+}
+
+button {
+  background: #e76f51;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #d85d40;
+}
+
+.secondary-button {
+  background: #123b5d;
+  margin-left: 10px;
+}
+
+#result {
+  display: none;
+}
+
+.checklist-section {
+  margin-bottom: 28px;
+}
+
+.checklist-section h3 {
+  color: #197278;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 8px;
+}
+
+.task {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.task input {
+  width: auto;
+  margin-top: 5px;
+}
+
+.priority {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  margin-left: 6px;
+  font-weight: bold;
+}
+
+.essential {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.important {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.optional {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.tip {
+  background: #eff6ff;
+  border-left: 4px solid #197278;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+footer {
+  background: #123b5d;
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+  margin-top: 40px;
+}
+
+@media (max-width: 650px) {
+
+  header h1 {
+    font-size: 32px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .secondary-button {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+}
+
+@media print {
+
+  nav,
+  header,
+  #formCard,
+  footer,
+  .print-buttons {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .card {
+    box-shadow: none;
+  }
+
+}
+
+</style>
 </head>
-<body>
 
-  <!-- Navigation bar -->
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="products.html">Products</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
 
-  <header>
-    <h1>Welcome to My Simple Website</h1>
-  </header>
 
-  <main>
-    <h2>My First Product</h2>
-    <p>This is just a demo product description.</p>
-    <a href="thankyou.html"><button>Buy Now</button></a>
-  </main>
+  <body>
 
-  <footer>
-    <p>© 2025 My Simple Website</p>
-  </footer>
+<nav>
+
+<ul>
+
+<li>
+<a href="index.html">Home</a>
+</li>
+
+<li>
+<a href="#checklist">Checklist</a>
+</li>
+
+<li>
+<a href="#about">About</a>
+</li>
+
+</ul>
+
+</nav>
+
+
+<header>
+
+<h1>TurnoverMate</h1>
+
+<p>
+Get a personalized rental property turnover checklist in about 60 seconds.
+</p>
+
+</header>
+
+
+<main class="container">
+
+
+<section class="card" id="formCard">
+
+<h2>Tell Us About Your Property</h2>
+
+<p>
+Answer a few simple questions and we'll create a practical turnover checklist.
+</p>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label for="propertyType">
+Property type
+</label>
+
+<select id="propertyType">
+
+<option value="Apartment">Apartment</option>
+<option value="Condo">Condo</option>
+<option value="House">House</option>
+<option value="Townhouse">Townhouse</option>
+<option value="Basement apartment">Basement apartment</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="bedrooms">
+Bedrooms
+</label>
+
+<input
+type="number"
+id="bedrooms"
+min="0"
+value="2"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="bathrooms">
+Bathrooms
+</label>
+
+<input
+type="number"
+id="bathrooms"
+min="1"
+value="1"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="flooring">
+Main flooring
+</label>
+
+<select id="flooring">
+
+<option>Mixed flooring</option>
+<option>Hardwood</option>
+<option>Laminate</option>
+<option>Vinyl</option>
+<option>Carpet</option>
+<option>Tile</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full-width">
+
+<label for="appliances">
+Appliances included
+</label>
+
+<input
+type="text"
+id="appliances"
+placeholder="Example: fridge, stove, dishwasher, washer, dryer"
+>
+
+</div>
+
+
+<div class="form-group full-width">
+
+<label for="outdoor">
+Outdoor areas
+</label>
+
+<input
+type="text"
+id="outdoor"
+placeholder="Example: backyard, deck, garage"
+>
+
+</div>
+
+
+<div class="form-group full-width">
+
+<label for="issues">
+Known problems or repairs
+</label>
+
+<textarea
+id="issues"
+placeholder="Example: leaking bathroom faucet, damaged bedroom wall..."
+></textarea>
+
+</div>
+
+
+</div>
+
+
+<div class="button-area">
+
+<button onclick="generateChecklist()">
+Generate My Checklist
+</button>
+
+</div>
+
+</section>
+
+
+<section class="card" id="result">
+
+<h2 id="checklist">
+Your Turnover Checklist
+</h2>
+
+<p id="propertySummary"></p>
+
+<div id="checklistContent"></div>
+
+
+<div class="tip">
+
+<strong>Reminder:</strong>
+
+This checklist is a general organizational tool. Local rental, safety,
+inspection, and tenancy requirements can vary by location.
+
+</div>
+
+
+<div class="button-area print-buttons">
+
+<button onclick="window.print()">
+Print / Save PDF
+</button>
+
+
+<button
+class="secondary-button"
+onclick="document.getElementById('result').style.display='none'; window.scrollTo(0,0);"
+>
+Create Another
+</button>
+
+</div>
+
+</section>
+
+
+<section class="card" id="about">
+
+<h2>
+About TurnoverMate
+</h2>
+
+<p>
+TurnoverMate helps small landlords organize the work between tenants.
+Instead of trying to remember everything, get a simple checklist
+tailored to your property.
+</p>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+<p>
+© 2026 TurnoverMate. All rights reserved.
+</p>
+
+</footer>
+
+
+    <script>
+
+function task(text, priority) {
+
+  let className = priority.toLowerCase();
+
+  return `
+    <div class="task">
+
+      <input type="checkbox">
+
+      <span>
+        ${text}
+
+        <span class="priority ${className}">
+          ${priority}
+        </span>
+
+      </span>
+
+    </div>
+  `;
+}
+
+
+function generateChecklist() {
+
+  const propertyType =
+    document.getElementById("propertyType").value;
+
+  const bedrooms =
+    document.getElementById("bedrooms").value;
+
+  const bathrooms =
+    document.getElementById("bathrooms").value;
+
+  const flooring =
+    document.getElementById("flooring").value;
+
+  const appliances =
+    document.getElementById("appliances").value;
+
+  const outdoor =
+    document.getElementById("outdoor").value;
+
+  const issues =
+    document.getElementById("issues").value;
+
+
+  document.getElementById("propertySummary").innerHTML =
+    `<strong>${propertyType}</strong> · ${bedrooms} bedroom(s) · ${bathrooms} bathroom(s) · ${flooring}`;
+
+
+  let html = "";
+
+
+  html += `
+
+    <div class="checklist-section">
+
+      <h3>1. Move-Out Inspection</h3>
+
+      ${task(
+        "Walk through every room and document the property's condition.",
+        "Essential"
+      )}
+
+      ${task(
+        "Take clear photos of rooms, walls, floors, fixtures and appliances.",
+        "Essential"
+      )}
+
+      ${task(
+        "Check doors, locks, windows and visible hardware.",
+        "Important"
+      )}
+
+      ${task(
+        "Look for visible damage that needs attention.",
+        "Important"
+      )}
+
+      ${task(
+        "Check lights, switches and visible electrical fixtures.",
+        "Important"
+      )}
+
+      ${task(
+        "Check for visible signs of leaks, moisture or water damage.",
+        "Essential"
+      )}
+
+    </div>
+
+  `;
+
+
+  html += `
+
+    <div class="checklist-section">
+
+      <h3>2. Cleaning</h3>
+
+      ${task(
+        "Clean and disinfect kitchen surfaces.",
+        "Essential"
+      )}
+
+      ${task(
+        "Clean inside the refrigerator and other included appliances.",
+        "Important"
+      )}
+
+      ${task(
+        "Clean oven and stovetop.",
+        "Important"
+      )}
+
+      ${task(
+        "Clean bathrooms, sinks, toilets and tubs/showers.",
+        "Essential"
+      )}
+
+      ${task(
+        "Clean floors throughout the property.",
+        "Essential"
+      )}
+
+      ${task(
+        "Clean doors, handles, switches and frequently touched surfaces.",
+        "Important"
+      )}
+
+      ${task(
+        "Clean windows where practical.",
+        "Optional"
+      )}
+
+    </div>
+
+  `;
+
+
+  html += `
+
+    <div class="checklist-section">
+
+      <h3>3. Maintenance</h3>
+
+      ${task(
+        "Replace burned-out light bulbs.",
+        "Important"
+      )}
+
+      ${task(
+        "Check faucets and visible plumbing for leaks.",
+        "Essential"
+      )}
+
+      ${task(
+        "Check toilets for visible problems.",
+        "Important"
+      )}
+
+      ${task(
+        "Check heating and cooling equipment for obvious issues.",
+        "Important"
+      )}
+
+      ${task(
+        "Check appliances and confirm they appear to operate normally.",
+        "Important"
+      )}
+
+      ${task(
+        "Replace damaged or missing basic hardware.",
+        "Important"
+      )}
+
+    </div>
+
+  `;
+
+
+  if (appliances.trim() !== "") {
+
+    html += `
+
+      <div class="checklist-section">
+
+        <h3>4. Appliances to Review</h3>
+
+        ${task(
+          "Review the appliances listed: " +
+          escapeHtml(appliances),
+          "Important"
+        )}
+
+        ${task(
+          "Clean the included appliances before the next tenant moves in.",
+          "Important"
+        )}
+
+      </div>
+
+    `;
+
+  }
+
+
+  if (outdoor.trim() !== "") {
+
+    html += `
+
+      <div class="checklist-section">
+
+        <h3>5. Outdoor Areas</h3>
+
+        ${task(
+          "Review the outdoor areas listed: " +
+          escapeHtml(outdoor),
+          "Important"
+        )}
+
+        ${task(
+          "Remove garbage, debris and abandoned items.",
+          "Essential"
+        )}
+
+        ${task(
+          "Check for obvious damage or maintenance issues.",
+          "Important"
+        )}
+
+      </div>
+
+    `;
+
+  }
+
+
+  html += `
+
+    <div class="checklist-section">
+
+      <h3>6. Flooring</h3>
+
+      ${task(
+        "Inspect " +
+        escapeHtml(flooring.toLowerCase()) +
+        " for stains, damage or excessive wear.",
+        "Important"
+      )}
+
+      ${task(
+        "Clean floors according to the appropriate surface type.",
+        "Important"
+      )}
+
+    </div>
+
+  `;
+
+
+  if (issues.trim() !== "") {
+
+    html += `
+
+      <div class="checklist-section">
+
+        <h3>7. Known Problems</h3>
+
+        ${task(
+          "Review reported issue: " +
+          escapeHtml(issues),
+          "Essential"
+        )}
+
+        ${task(
+          "Document the condition and arrange appropriate follow-up if needed.",
+          "Important"
+        )}
+
+      </div>
+
+    `;
+
+  }
+
+
+  html += `
+
+    <div class="checklist-section">
+
+      <h3>8. Final Walkthrough</h3>
+
+      ${task(
+        "Remove remaining personal items, garbage and debris.",
+        "Essential"
+      )}
+
+      ${task(
+        "Confirm the property is clean and presentable.",
+        "Essential"
+      )}
+
+      ${task(
+        "Confirm required repairs and maintenance have been addressed.",
+        "Essential"
+      )}
+
+      ${task(
+        "Take final photos for your records.",
+        "Important"
+      )}
+
+      ${task(
+        "Check that the property is ready for the next tenant.",
+        "Essential"
+      )}
+
+    </div>
+
+  `;
+
+
+  document.getElementById("checklistContent").innerHTML = html;
+
+  document.getElementById("result").style.display = "block";
+
+  document.getElementById("result").scrollIntoView({
+    behavior: "smooth"
+  });
+
+}
+
+
+function escapeHtml(text) {
+
+  const div = document.createElement("div");
+
+  div.textContent = text;
+
+  return div.innerHTML;
+
+}
+
+</script>
+
 
 </body>
 </html>
-
